@@ -74,11 +74,11 @@ bot.hears('Показать общую сумму трат',(ctx)=>{
   
 
 bot.hears('Показать расходы за месяц',(ctx)=>{
-    let vis = []; 
+    let arrayOfexpenses = []; 
     for(let i = 0; i<=arr.length; i++){
         let rest = arr[i];//обращение к элементу массива    
         for(let key in rest){
-         vis.push(rest[key]);  
+         arrayOfexpenses.push(rest[key]);  
          
         }   
     }
