@@ -4,7 +4,6 @@ require('dotenv').config()
 const { Telegraf, Markup, Context } = require('telegraf')
 const item=require('./item')
 
-
 const bot = new Telegraf(process.env.BOT_TOKEN,{
     polling: {
         interval:300,
@@ -18,11 +17,10 @@ const bot = new Telegraf(process.env.BOT_TOKEN,{
 var cron = require('node-cron');
  
 cron.schedule('0 0 3 * *', () => {
-        arr.splice(0,arr.length);
-  console.log('Выполнять каждый месяц');
+ arr.splice(0,arr.length);
+    
+ console.log('Выполнять каждый месяц');
 });
-
-
 
 
     bot.start((ctx)=> ctx.reply(`
@@ -42,6 +40,7 @@ cron.schedule('0 0 3 * *', () => {
         .extra()
    )
 ); 
+
 
 const arr = [];
 var limit;
@@ -64,20 +63,13 @@ bot.hears('Показать лимитную сумму',(ctx)=>{
  }) 
 
 
-
-
-
 bot.hears('Показать общую сумму трат',(ctx)=>{
      value= arr.reduce((acc, obj) => { acc[0] +=Number (obj.amount); return acc; }, [0]);// суммирование всех значений 
      
      if(value[0]>limit){
         {ctx.reply('Вы превысили лимит')};
     }
-  {ctx.reply(`${value}`)};
-
-
- 
-    
+  {ctx.reply(`${value}`)}; 
 })
   
 
@@ -93,9 +85,6 @@ bot.hears('Показать расходы за месяц',(ctx)=>{
    
        {ctx.reply(`Траты за месяц- \n ${vis} \n `)}; 
 });
-
-
-
 
 bot.on( 'text',(ctx)=>{ 
 
@@ -113,7 +102,7 @@ bot.on( 'text',(ctx)=>{
 
         {ctx.reply('Ваши траты были внесены')}
 
-    }else if(expense.includes("/del")){
+    } else if(expense.includes("/del")){
 
       const newArr=arr.findIndex(item=>item.amount===formEx[1]);
       arr.splice(newArr,1);
@@ -129,21 +118,11 @@ bot.on( 'text',(ctx)=>{
     {ctx.reply(`Лимитная сумма ${limit}`)}  
 
 } 
-
-
-
     } catch(e){
         ctx.reply('Простите,я не знаю как на это ответить');
-     
-    }
-  
+
+          }
+
     })  
-  
- 
-
-
-
 
 bot.launch();
-
-
