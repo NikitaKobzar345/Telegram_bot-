@@ -14,7 +14,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN,{
     }
 });
 
-var cron = require('node-cron');
+let cron = require('node-cron');
  
 cron.schedule('0 0 3 * *', () => {
  arr.splice(0,arr.length);
@@ -43,8 +43,8 @@ cron.schedule('0 0 3 * *', () => {
 
 
 const arr = [];
-var limit;
-var value;
+let limit;
+let value;
 
 bot.hears('Общее', (ctx) => ctx.reply('Общее:\n   \n Категории:/categories\n Удалить расход:/del\n '))
 
@@ -90,10 +90,10 @@ bot.on( 'text',(ctx)=>{
 
     try{
 
-    var expense = ctx.message.text;
-    var formEx = expense.split(' ');
-    var amounount = formEx[0];// получить первый элемент 
-    var categorie = formEx[1];// получить второй 
+    let expense = ctx.message.text;
+    let formEx = expense.split(' ');
+    let amounount = formEx[0];// получить первый элемент 
+    let categorie = formEx[1];// получить второй 
     
     
     if(item.includes(categorie)){
@@ -106,8 +106,7 @@ bot.on( 'text',(ctx)=>{
 
       const newArr=arr.findIndex(item=>item.amount===formEx[1]);
       arr.splice(newArr,1);
-      
-
+        
         {ctx.reply(`Вы удалили`)};
        
  
