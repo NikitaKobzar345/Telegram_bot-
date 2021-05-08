@@ -113,8 +113,6 @@ bot.on( 'text',(ctx)=>{
  
 }   else if(!isNaN(formEx)){ 
     limit = formEx;    
-    
-
     {ctx.reply(`Лимитная сумма ${limit}`)}  
 
 } 
@@ -122,7 +120,6 @@ bot.on( 'text',(ctx)=>{
         ctx.reply('Простите,я не знаю как на это ответить');
 
           }
-
     })  
 
 bot.launch();
